@@ -1,13 +1,14 @@
 package ru.job4j.di;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.job4j.di.aop.LoggingAspect;
 import ru.job4j.di.model.StartUI;
 import ru.job4j.di.model.Store;
 
 public class ContextByListOfClasses {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(Store.class, StartUI.class);
+        context.register(Store.class, StartUI.class, LoggingAspect.class);
         context.refresh();
         StartUI ui = context.getBean(StartUI.class);
         ui.add("Petr Arsentev");
